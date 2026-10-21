@@ -25,3 +25,7 @@ Ange alltid artikel eller paragraf, där det finns, och separat aktörsroll. Kon
 
 ### EUDR tre obligatoriska regressionsfall
 Testa primär importör, nedströmsaktör och otillräcklig KN/TARIC-kod enligt `tests/eudr_cases.json` där tillgänglig. Artikel 5 enligt (EU) 2025/2650 innebär inte generell DDS för nedströmsaktörer. Om TARIC-kod inte verifierats: begär precisering, inte gissad klassificering. Även svenska SFS-nummer kräver primärverifiering.
+
+### Kvalitetssäkring för EUDR
+
+Pröva artikel 2, 3, 4, 4a, 5, 8–11 och 38 och bilaga I mot tillämplig lydelse. Gör en separat verifiering av svensk kompletterande rätt. Använd en daterad söklogg och redovisa ej verifierade uppgifter öppet. Ge inte PASS när avgörande källor eller rekvisit saknas.
