@@ -1,0 +1,26 @@
+[
+  {
+    "id": "T1",
+    "name": "Primär importör",
+    "input": "Medelstort företag, import av kaffe från tredje land efter 30 dec 2026; exakt KN/TARIC-kod ej angiven.",
+    "result": "Villkorad skyldighet: kontrollera bilaga I och klassificering. Om produkten omfattas ska primär verksamhetsutövare genomföra tillbörlig aktsamhet och lämna DDS före utsläppande på marknaden. Utan produktkod ingen definitiv varu- eller deklarationsbedömning.",
+    "refs": "Artikel 3, 4, 8–11, bilaga I samt artikel 38; EU 2025/2650.",
+    "status": "DELVIS VERIFIERAT"
+  },
+  {
+    "id": "T2",
+    "name": "Nedströmsaktör",
+    "input": "Svenskt företag som köper redan omfattad och tillbörligt kontrollerad kakaoprodukt inom EU och tillverkar produkt för vidare försäljning, efter 30 dec 2026.",
+    "result": "Ingen automatisk ny DDS-skyldighet för nedströmsaktör. Pröva definition och leverantörskedja, samla och bevara leverantörs-/kundinformation, registreringskrav vid icke-SME och hantera information om bristande efterlevnad.",
+    "refs": "Artikel 2 definitioner, artikel 5.1–7, ändring EU 2025/2650.",
+    "status": "VERIFIERAT VILLKORAT"
+  },
+  {
+    "id": "T3",
+    "name": "Osäker varukod",
+    "input": "”Möbel i trä” utan materialbeskrivning, KN-nummer, ursprung eller datum.",
+    "result": "INGET kategoriskt besked om EUDR eller DDS. Be om exakt produktbeskrivning, KN/TARIC, transaktionsdatum, roll, storlek och produktionsland; kontrollera bilaga I inklusive EU 2026/2102.",
+    "refs": "Artikel 1–3, bilaga I och EU 2026/2102.",
+    "status": "KORREKT BLOCKERAT"
+  }
+]

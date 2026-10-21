@@ -1,0 +1,346 @@
+schema_version: 1
+project:
+  id: forbud-och-restriktioner
+  name: Förbud och Restriktioner
+  language: sv
+  description: Spårbar EU- och svensk rättsanalys för myndighetsexperter med tre EUDR-regressionsfall
+    och AI-märkt PDF.
+instructions:
+  mode: modular_skills
+  canonical: src/instructions/core.md
+  core: src/instructions/core.md
+  core_contract:
+    enabled: true
+    required_markers:
+    - officiella rättskällor
+    - tillämpningsstart
+    - AI-genererat analysunderlag
+    required_runtime_dependencies: []
+    max_required_file_hops: 1
+    knowledge_may_not_be_required_for_core_behavior: true
+skills:
+  contract_version: 1
+  mode: explicit
+  definitions:
+  - id: regelverksanalys
+    name: regelverksanalys
+    description: Identifiera lagstiftning, historik, praktiska regler och artikelkällor.
+    source: src/instructions/skills/regelverksanalys/behavior.md
+    references: []
+    assets: []
+    scripts: []
+  - id: rapportpublicering
+    name: rapportpublicering
+    description: Kvalitetsgranska och publicera AI-märkt källbelagd PDF.
+    source: src/instructions/skills/rapportpublicering/behavior.md
+    references: []
+    assets: []
+    scripts: []
+  - id: forandringsbevakning
+    name: forandringsbevakning
+    description: Jämför lagstiftning och upptäck ändringar på begäran.
+    source: src/instructions/skills/forandringsbevakning/behavior.md
+    references: []
+    assets: []
+    scripts: []
+  schema: schemas/skill-contract.schema.json
+  resource_policy: explicit
+model_robustness:
+  level: guided
+  rationale: Källbaserad flerstegsanalys med deterministiska kvalitetsgrindar
+  operational_core: true
+  explicit_workflow: false
+  deterministic_gates: true
+  model_compatibility_evals: true
+runtime:
+  primary: none
+  chat_zip:
+    enabled: true
+    role: peer_distribution
+    allow_richer_runtime_than_custom_gpt: true
+    entrypoint: START-HERE.md
+    schema: schemas/chat-zip-runtime.schema.json
+    policy: src/runtime-policy/chat-zip-runtime-policy.md
+    start_here_template: templates/START-HERE.chat.md.tpl
+    layout:
+      assistant: assistant
+      knowledge: knowledge
+      schemas: schemas
+      scripts: scripts
+      templates: templates
+      runtime: runtime
+    include:
+      instructions:
+      - src/instructions/system.md
+      policies:
+      - src/runtime-policy/*.md
+      conversation_starters:
+      - src/conversation-starters/**
+      knowledge:
+      - knowledge/**
+      schemas:
+      - schemas/**
+      scripts:
+      - scripts/**
+      templates:
+      - templates/**
+    exclude:
+    - docs/**
+    - tests/**
+    - evals/**
+    - research/**
+    - .github/**
+    - .git/**
+    - build/**
+    - dist/**
+    - project-status.yaml
+    - PROJECT.md
+    - STATUS.md
+    manifest:
+      required: true
+      checksums: true
+    deterministic_build: true
+    omit_empty_runtime_directories: true
+  plugin:
+    enabled: true
+    role: peer_distribution
+    mode: openai_plugin
+    schema: schemas/plugin-runtime.schema.json
+    policy: src/runtime-policy/plugin-runtime-policy.md
+    layout:
+      manifest_file: plugin.json
+      skills: skills
+      references: references
+      assets: assets
+      scripts: scripts
+    templates:
+      readme: templates/README.plugin.md.tpl
+    validation:
+      require_manifest: true
+      require_skill: true
+      require_skill_frontmatter: true
+  claude:
+    enabled: true
+    role: peer_distribution
+    mode: claude_project
+    schema: schemas/claude-portable-runtime.schema.json
+    policy: src/runtime-policy/claude-portable-runtime-policy.md
+    project:
+      instructions: project/instructions.md
+      knowledge: project/knowledge
+      runtime_contract: project/runtime-contract.json
+    templates:
+      readme: templates/README.claude.md.tpl
+    validation:
+      require_instructions: true
+      require_runtime_contract: true
+  opencode:
+    enabled: true
+    role: peer_distribution
+    mode: opencode_workspace
+    schema: schemas/opencode-runtime.schema.json
+    policy: src/runtime-policy/opencode-runtime-policy.md
+    layout:
+      instructions: AGENTS.md
+      config: opencode.json
+      tools: .opencode/tools
+      runtime_scripts: scripts
+      runtime_contract: .opencode/runtime-contract.json
+      knowledge: knowledge
+    templates:
+      readme: templates/README.opencode.md.tpl
+    skills:
+      enabled: true
+      directory: .opencode/skills
+      definitions:
+      - id: gpt-project-workflow
+        name: gpt-project-workflow
+        description: Planera, återuppta och fortsätt ett GPT Byggaren-projekt utifrån faktisk projektstatus.
+        references:
+        - docs/dynamic-planning.md
+        - docs/resume-flow.md
+        - docs/next-step-recommendation.md
+    validation:
+      require_agents_md: true
+      require_runtime_contract: true
+  custom_gpt:
+    enabled: false
+capabilities:
+  contract_version: 1
+  recommendation_mode: inferred_from_use_case
+  ask_user_only_when_business_choice_is_ambiguous: true
+  requirements:
+    filesystem:
+      read: required
+      write: required
+    web:
+      level: required
+    structured_data:
+      level: recommended
+    persistent_state:
+      level: optional
+  schema: schemas/capability-contract.schema.json
+artifacts:
+  contract_version: 1
+  outputs:
+    report:
+      kind: document
+      format: pdf
+      requirement: required
+      persistence: ephemeral
+    project_package:
+      kind: package
+      format: zip
+      requirement: required
+      persistence: persistent
+  schema: schemas/artifact-contract.schema.json
+tools:
+  contract_version: 1
+  tools: []
+  schema: schemas/tool-contract.schema.json
+workspace_state:
+  contract_version: 1
+  workspace:
+    requirement: not_required
+    persistence: ephemeral
+    portable: true
+    separate_from_assistant: true
+  state:
+    requirement: not_required
+    persistence: ephemeral
+    authority: workspace_file
+    format: yaml
+    path: project-status.yaml
+    conversation_fallback: true
+  schema: schemas/workspace-state-contract.schema.json
+build_system:
+  targets:
+  - project
+  - chat
+  - plugin
+  - claude_project
+  - claude_skills
+  - opencode
+  runtime_targets:
+    chat:
+      runtime_id: chatgpt_chat
+      runtime_key: chat_zip
+      builder: chat
+      artifact_type: chat_zip
+      filename_pattern: <project-id>-chat-<version>.zip
+    claude_project:
+      runtime_id: claude_project
+      runtime_key: claude
+      builder: claude
+      artifact_type: claude_project_zip
+      filename_pattern: <project-id>-claude-project-<version>.zip
+    claude_skills:
+      runtime_id: claude_skills
+      runtime_key: claude
+      builder: claude_skills
+      artifact_type: claude_skills_zip
+      filename_pattern: <project-id>-claude-skills-<version>.zip
+    opencode:
+      runtime_id: opencode
+      runtime_key: opencode
+      builder: opencode
+      artifact_type: opencode_zip
+      filename_pattern: <project-id>-opencode-<version>.zip
+    plugin:
+      runtime_id: openai_plugin
+      runtime_key: plugin
+      builder: plugin
+      artifact_type: plugin_zip
+      filename_pattern: <project-id>-plugin-<version>.zip
+  output_root: dist
+  working_root: build
+  deterministic_zip: true
+  manifest: true
+  checksums: sha256
+  project_zip_excludes:
+  - build/**
+  - dist/**
+  - .git/**
+  - '**/__pycache__/**'
+  - '**/.pytest_cache/**'
+development:
+  plan: docs/development-plan.md
+  status: project-status.yaml
+ci:
+  enabled: false
+release:
+  github:
+    enabled: false
+structure:
+  canonical_root: src
+  instructions:
+    path: src/instructions
+    required: true
+  conversation_starters:
+    path: src/conversation-starters
+    required: true
+  runtime_policy:
+    path: src/runtime-policy
+    required: false
+  knowledge:
+    path: knowledge
+    required: false
+  templates:
+    path: templates
+    required: false
+  schemas:
+    path: schemas
+    required: false
+  scripts:
+    path: scripts
+    required: false
+  tests:
+    path: tests
+    required: false
+  evals:
+    path: evals
+    required: false
+  research:
+    path: research
+    required: false
+  build:
+    path: build
+    generated: true
+    create_when_needed: true
+  dist:
+    path: dist
+    generated: true
+    create_when_needed: true
+knowledge_architecture:
+  schema: schemas/knowledge-architecture.schema.json
+  policy: src/runtime-policy/knowledge-policy.md
+  canonical_root: knowledge
+  chat:
+    include:
+    - knowledge/**
+    full_canonical_allowed: true
+  custom_gpt:
+    strategy: hybrid
+    max_files: 20
+    allow_reduced_functionality: true
+    priority:
+    - knowledge/domain/**
+    - knowledge/reference/core/**
+  resource_metadata:
+    supported: true
+    fields:
+    - id
+    - title
+    - role
+    - source
+    - runtime
+    - priority
+    - format
+    - generated
+  behavior_rules_belong_in_instructions_or_policy: true
+testing:
+  manifest: tests/test-manifest.json
+  command: python -B -m unittest discover -s tests -p test_*.py -v
+  scope: deterministic_contract_and_regression
+  model_e2e: not_run
+  notes: Tests validate static instructions and case fixtures, not independently installed Plugin behavior.

@@ -1,0 +1,50 @@
+name: Publish distributions
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependencies
+        run: python -m pip install 'pyyaml>=6,<7' 'jsonschema>=4,<5' 'pytest>=8,<9'
+      - name: Derive release version from tag
+        id: version
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid version tag: $RELEASE_TAG" >&2
+            exit 1
+          fi
+          echo "number=${RELEASE_TAG#v}" >> "$GITHUB_OUTPUT"
+      - name: Run project regression tests
+        run: python -B -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Build distributions using canonical GPT Byggaren 1.6.26 scripts
+        shell: bash
+        env:
+          VERSION: ${{ steps.version.outputs.number }}
+        run: python -B scripts/build_distributions.py --project-root . --version "$VERSION"
+      - name: Validate distributions
+        run: python -B scripts/validate_distributions.py --project-root .
+      - name: Release-readiness gate
+        run: python -B scripts/assess_release_readiness.py --project-root . --include-build-state
+      - name: Publish all distributions and manifest
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          gh release upload "$RELEASE_TAG" dist/*.zip dist/SHA256SUMS.txt dist/DELIVERY-MANIFEST.json --clobber
