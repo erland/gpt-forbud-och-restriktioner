@@ -26,7 +26,10 @@ skills:
     name: regelverksanalys
     description: Identifiera lagstiftning, historik, praktiska regler och artikelkällor.
     source: src/instructions/skills/regelverksanalys/behavior.md
-    references: []
+    references:
+    - knowledge/regulatory-profiles/cites.md
+    - knowledge/regulatory-profiles/cbam.md
+    - knowledge/regulatory-profiles/sanktioner.md
     assets: []
     scripts: []
   - id: rapportpublicering
