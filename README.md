@@ -14,3 +14,6 @@ Vid användning jämförs officiella källor med importerad eller tidigare spara
 `.github/workflows/ci.yml` kör tester, kanonisk distributionsbyggare, validering och release-readiness vid PR/push mot `main` eller manuellt. `.github/workflows/release.yml` bygger alla fem runtimepaket och projekt-ZIP när en GitHub Release publiceras, använder versionsnumret från `vX.Y.Z` och laddar upp ZIP, SHA256SUMS och leveransmanifest till releasen. Det kräver att GitHub Actions har skrivbehörighet för release-uppladdning (`contents: write`).
 
 Workflows använder de incheckade, oförändrade byggskripten från GPT Byggaren Engine 1.6.26; de hämtar inte en rörlig `latest`-motor. Om motorn ska uppgraderas bör originalskripten uppdateras tillsammans med projektet och kontrolleras i PR. Lokal ZIP-byggning kräver inte GitHub.
+
+## Runtimekorrigering efter v0.5.3
+OpenCode-paketets README är projektspecifik och kontrolleras även i genererat ZIP-arkiv i CI. Chat ZIP innehåller fortfarande kanonisk offline-byggmotor på grund av ett ovillkorligt anrop i GPT Byggaren Engine 1.6.26; detta kan inte styras bort enbart i projektprofilen. Se [runtimegranskningen](docs/runtime-distribution-audit.md). Ingen lokal ersättningsbyggare har införts.
