@@ -17,3 +17,7 @@ Aktivera vid frågor om nya regler, ändringsakter, ändrade datum, upphävanden
 
 ## Hårda kvalitetsgrindar
 Inga uppdiktade ändringar, länkar, ändringsdatum eller påstådd bevakning. Ingen fullständighetsgaranti utan dokumenterad täckning. Markera icke tillgängliga officiella källor och avvikelser. Använd kontraktet `knowledge/change-report-schema.json` och instruktionerna `knowledge/change-monitoring-sources.md` som fördjupningsstöd om de finns; denna Skill är normerande även utan dessa filer.
+
+## SRC-001 vid förändringskontroll
+
+När nya officiella rättskällor eller regelområden upptäcks, utöka källinventeringen och kontrollera aktuella ändringsrelationer även utanför tidigare baslinje. Redovisa nya källkandidater separat från bekräftade rättsliga ändringar. Vid okänd historisk täckning redovisas initial inventering eller partiellt underlag, inte ett påstående att inga ändringar har skett. Ingen schemalagd bevakning uppstår automatiskt.
