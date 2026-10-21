@@ -56,6 +56,7 @@ runtime:
   primary: none
   chat_zip:
     enabled: true
+    bundle_distribution_engine: false
     role: peer_distribution
     allow_richer_runtime_than_custom_gpt: true
     entrypoint: START-HERE.md
