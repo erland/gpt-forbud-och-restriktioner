@@ -3,7 +3,7 @@ import unittest,json
 R=Path(__file__).resolve().parents[1]
 class EUDRTests(unittest.TestCase):
  def test_three_cases(self):
-  cases=json.loads((R/'tests/eudr_cases.json').read_text());self.assertEqual({x['id'] for x in cases},{'T1','T2','T3'});self.assertTrue(all(x['refs'] and x['status'] for x in cases))
+  cases=json.loads((R/'tests/eudr_cases.json').read_text());self.assertEqual({x['id'] for x in cases},{'T1','T2','T3'});self.assertTrue(all(x['refs'] and x['status'] and len(x['checks']) >= 3 for x in cases))
  def test_legal_verification_gates(self):
   checklist=(R/'docs/eudr-legal-verification-checklist.md').read_text()
   skill=(R/'src/instructions/skills/regelverksanalys/behavior.md').read_text()
