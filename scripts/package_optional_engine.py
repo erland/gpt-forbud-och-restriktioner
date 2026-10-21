@@ -8,7 +8,7 @@ import zipfile
 from pathlib import Path
 
 PROJECT = "forbud-och-restriktioner"
-FILES = ("validate_evidence.py", "compare_baselines.py", "validate_pdf.py", "requirements.txt")
+FILES = ("validate_evidence.py", "compare_baselines.py", "validate_pdf.py", "selftest.py", "requirements.txt")
 STAMP = (2020, 1, 1, 0, 0, 0)
 
 def build(root, version):
