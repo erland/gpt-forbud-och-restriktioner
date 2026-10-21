@@ -31,7 +31,7 @@ jobs:
           echo "number=${RELEASE_TAG#v}" >> "$GITHUB_OUTPUT"
       - name: Run project regression tests
         run: python -B -m unittest discover -s tests -p 'test_*.py' -v
-      - name: Build distributions using canonical GPT Byggaren 1.6.26 scripts
+      - name: Build distributions using canonical GPT Byggaren 1.6.28 scripts
         shell: bash
         env:
           VERSION: ${{ steps.version.outputs.number }}
