@@ -36,6 +36,10 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.number }}
         run: python -B scripts/build_distributions.py --project-root . --version "$VERSION"
+      - name: Package optional runtime Engine
+        env:
+          VERSION: ${{ steps.version.outputs.number }}
+        run: python -B scripts/package_optional_engine.py --project-root . --version "$VERSION"
       - name: Validate distributions
         run: python -B scripts/validate_distributions.py --project-root .
       - name: Release-readiness gate
