@@ -27,6 +27,8 @@ jobs:
         run: python -B -m unittest discover -s tests -p 'test_runtime_docs.py' -v
       - name: Verify generated Chat ZIP excludes offline engine
         run: python -B -m unittest discover -s tests -p 'test_chat_bundle.py' -v
+      - name: Verify generated Plugin Skill version metadata
+        run: python -B -m unittest discover -s tests -p 'test_plugin_version_metadata.py' -v
       - name: Validate distributions
         run: python -B scripts/validate_distributions.py --project-root .
       - name: Release-readiness report
