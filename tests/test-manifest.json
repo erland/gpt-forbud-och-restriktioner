@@ -6,7 +6,8 @@
     "test_acceptance_contract.py",
     "test_eudr_regression.py",
     "test_change_monitoring.py",
-    "test_change_history_eudr.py"
+    "test_change_history_eudr.py",
+    "test_domain_acceptance.py"
   ],
   "coverage_kind": "static_contract_and_fixture_regression",
   "excluded": [
@@ -31,6 +32,36 @@
     {
       "id": "PLUGIN-04",
       "prompt": "Jämför EUDR 2025-01-01 och 2026-10-21; ange ändringsakter och före/efter med källor och AI-märkt PDF."
+    },
+    {
+      "id": "CITES-01",
+      "prompt": "Möbel uppges vara tillverkad av ett skyddat träslag, men vetenskapligt artnamn och ursprung är okända. Redovisa kontroller enligt CITES-profilen, primärkällor, svensk rätt, osäkerheter och AI-märkt PDF. Förklara vilka slutsatser som måste vara villkorade.",
+      "expected_verdict": "PARTIAL"
+    },
+    {
+      "id": "CITES-02",
+      "prompt": "Handel med exemplar som har uppgivet vetenskapligt namn och ursprungsland. Analysera import till Sverige vid angivet datum. Redovisa kontroller enligt CITES-profilen, primärkällor, svensk rätt, osäkerheter och AI-märkt PDF. Förklara vilka slutsatser som måste vara villkorade.",
+      "expected_verdict": "CONDITIONAL"
+    },
+    {
+      "id": "CBAM-01",
+      "prompt": "Företag importerar en metallprodukt men uppger varken KN-kod, tullförfarande eller importvolym. Redovisa kontroller enligt CBAM-profilen, primärkällor, svensk rätt, osäkerheter och AI-märkt PDF. Förklara vilka slutsatser som måste vara villkorade.",
+      "expected_verdict": "PARTIAL"
+    },
+    {
+      "id": "CBAM-02",
+      "prompt": "Importör av vara i potentiellt CBAM-omfattad kategori under 2026. Fråga om auktorisation, volymtröskel och skyldigheter. Redovisa kontroller enligt CBAM-profilen, primärkällor, svensk rätt, osäkerheter och AI-märkt PDF. Förklara vilka slutsatser som måste vara villkorade.",
+      "expected_verdict": "CONDITIONAL"
+    },
+    {
+      "id": "SANCTIONS-01",
+      "prompt": "Export av teknisk utrustning till okänd slutmottagare via transitland; destination och slutanvändning är oklara. Redovisa kontroller enligt SANKTIONER-profilen, primärkällor, svensk rätt, osäkerheter och AI-märkt PDF. Förklara vilka slutsatser som måste vara villkorade.",
+      "expected_verdict": "PARTIAL"
+    },
+    {
+      "id": "SANCTIONS-02",
+      "prompt": "Företag frågar om avtal med utländsk motpart som påstås stå utanför EU:s sanktionslistor. Redovisa kontroller enligt SANKTIONER-profilen, primärkällor, svensk rätt, osäkerheter och AI-märkt PDF. Förklara vilka slutsatser som måste vara villkorade.",
+      "expected_verdict": "CONDITIONAL"
     }
   ]
 }
