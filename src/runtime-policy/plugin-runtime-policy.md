@@ -70,3 +70,9 @@ Plugin ska inte vara beroende av tidigare chatthistorik när canonical workflow 
 ## Kompatibilitet
 
 Om plugin-runtime inte kan uppnå full funktionell parity med canonical projektkontraktet ska skillnaden dokumenteras i runtime parity och inte döljas genom runtime-specifika specialregler.
+
+## ENG-001 – valfri körmotor
+
+Plugin ska fungera för juridisk analys och PDF-publicering utan separat Engine-ZIP. Bara om ett deklarerat deterministiskt skript verkligen behövs och inte kan köras med redan tillgängliga resurser får assistenten erbjuda den separata Engine-distributionen. Läs alltid aktuell `plugin_version` från installerade Skills och verifiera att samtliga visar samma version. För en publicerad release med versionsnumret `X.Y.Z` ska Engine-artefakten heta `forbud-och-restriktioner-engine-X.Y.Z.zip` under GitHub Release `vX.Y.Z` i `https://github.com/erland/gpt-forbud-och-restriktioner/releases/tag/vX.Y.Z`. Ge en direktlänk till ZIP-filen endast när artefaktens existens har verifierats; annars hänvisa till releasens sida och redovisa att Engine-tillgänglighet inte har fastställts. Hämta aldrig `latest` eller fel version som substitut.
+
+När användaren bifogat Engine-ZIP:en: kontrollera arkivsökvägar, manifest, SHA-256 för varje resurs, versionsidentitet och lämplig exekveringsmiljö innan skript körs. `scripts/selftest.py` kan kontrollera ett säkert extraherat arkiv. Skripten verifierar endast struktur/teknik; de fastställer inte juridisk korrekthet eller aktuell gällande rätt. PDF ska fortfarande kunna produceras via värdmiljöns kompatibla verktyg utan Engine. Misslyckad frivillig Engine-installation får inte blockera vanlig analys.
