@@ -23,6 +23,8 @@ jobs:
         run: python -B -m unittest discover -s tests -p 'test_*.py' -v
       - name: Build and validate all five distributions with canonical engine scripts
         run: python -B scripts/build_distributions.py --project-root . --version 0.0.0-ci
+      - name: Check generated OpenCode documentation
+        run: python -B -m unittest discover -s tests -p 'test_runtime_docs.py' -v
       - name: Validate distributions
         run: python -B scripts/validate_distributions.py --project-root .
       - name: Release-readiness report

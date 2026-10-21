@@ -1,29 +1,28 @@
-# {{GPT_NAME}} – OpenCode-distribution
+# {{GPT_NAME}} – OpenCode
 
-Detta paket är en basruntime för OpenCode.
+Detta paket innehåller **Förbud och Restriktioner**, en AI-assistent för källspårbar analys av EU:s och Sveriges regler om införsel och utförsel.
 
-## Användning
+## Kom igång
 
-1. Packa upp ZIP-filen som ett OpenCode-workspace för GPT Byggaren.
-2. Öppna workspace-roten i OpenCode.
-3. OpenCode läser root `AGENTS.md` som projektinstruktion.
-4. Lägg det GPT-projekt som ska analyseras eller ändras som en underkatalog i workspace, exempelvis `project/`, eller använd en annan relativ sökväg från workspace-roten.
-5. När ett genererat GPT Byggaren-tool körs mot ett målprojekt, ange `projectRoot` för målprojektet, exempelvis `project`. Om `projectRoot` utelämnas används workspace-roten.
-6. `.opencode/runtime-contract.json` dokumenterar hur adaptern realiserar canonical kontrakt.
-7. `knowledge/` innehåller portabelt referensmaterial som agenten kan läsa vid behov.
+1. Packa upp ZIP-filen i en egen katalog.
+2. Öppna katalogen som workspace i OpenCode.
+3. OpenCode läser `AGENTS.md` som huvudinstruktion och använder de tre Skills som följer med under `.opencode/skills/`.
+4. Be assistenten analysera ett område, exempelvis EUDR/DDS, ELAN-1L eller CITES. Precisera handelsriktning, aktör, varuslag och tidpunkt när det har betydelse.
+5. Granska källor, rättslig status, osäkerheter och eventuell AI-märkt PDF före användning som beslutsunderlag.
 
-## Viktigt om målprojektet
+## Innehåll
 
-OpenCode-ZIP:en är GPT Byggarens runtime, inte det GPT-projekt som ska bearbetas. Runtimepaketet innehåller därför inte automatiskt målprojektets `gpt-project.yaml`, `project-status.yaml` eller övriga canonical projektfiler.
+- `AGENTS.md`: gemensamma beteenderegler och källkrav.
+- `.opencode/skills/`: regelverksanalys, rapportpublicering och förändringsbevakning.
+- `.opencode/runtime-contract.json`: deklarerade funktioner och begränsningar.
+- `knowledge/`: referensmaterial för analyserna.
+- `opencode.json`: runtimekonfiguration.
 
-Tools som `gpt_lint_project`, `gpt_recommend_next_step`, `gpt_project_hygiene`, `gpt_build_distributions` och `gpt_validate_distributions` arbetar mot den katalog som anges med `projectRoot`.
+## Begränsningar
 
-## Avgränsning i denna version
+Körmiljön måste erbjuda webbtillgång för aktuell källkontroll och filgenerering för PDF-export. Om någon förmåga saknas ska assistenten redovisa det och inte påstå att den har utfört kontrollen eller skapat en fil. Schemalagd bevakning ingår inte automatiskt.
 
-- Återanvändbara Skills finns under `.opencode/skills/` och laddas av OpenCode vid behov.
-- Canonical runtime-tools finns som projektlokala custom tools under `.opencode/tools/`.
-- `opencode.json` styr godkännande för muterande respektive icke-muternade tools.
-- `CLAUDE.md` används inte; OpenCode V2 använder `AGENTS.md` för projektinstruktioner.
+Paketet innehåller **inte** GPT Byggarens projektverktyg eller `.opencode/tools/` om inga körbara verktyg uttryckligen deklarerats. Förbud och Restriktioner är en regelverksassistent, inte ett verktyg för att bygga andra GPT:er.
 
 ## Version
 
