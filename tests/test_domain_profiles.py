@@ -28,7 +28,7 @@ class DomainProfilesTests(unittest.TestCase):
             names = set(z.namelist())
             skill = z.read("skills/regelverksanalys/SKILL.md").decode("utf-8")
             for name in IDS:
-                self.assertIn(f"references/{name}.md", names)
+                self.assertIn(f"skills/regelverksanalys/references/{name}.md", names)
                 self.assertIn(f"references/{name}.md", skill)
 
 if __name__ == "__main__":
