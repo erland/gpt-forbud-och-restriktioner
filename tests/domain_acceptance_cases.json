@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "coverage_kind": "functional_acceptance_prompts_not_executed",
+  "source_profiles": [
+    "knowledge/regulatory-profiles/cites.md",
+    "knowledge/regulatory-profiles/cbam.md",
+    "knowledge/regulatory-profiles/sanktioner.md"
+  ],
+  "cases": [
+    {
+      "id": "CITES-01",
+      "domain": "cites",
+      "case": "Möbel uppges vara tillverkad av ett skyddat träslag, men vetenskapligt artnamn och ursprung är okända.",
+      "expect": [
+        "begär vetenskapligt artnamn och ursprung",
+        "kontrollera aktuell EU-bilaga och handelsriktning",
+        "inga påhittade tillstånd eller kategoriska legalitetsbesked"
+      ],
+      "verdict": "PARTIAL"
+    },
+    {
+      "id": "CITES-02",
+      "domain": "cites",
+      "case": "Handel med exemplar som har uppgivet vetenskapligt namn och ursprungsland. Analysera import till Sverige vid angivet datum.",
+      "expect": [
+        "verifiera taxon och aktuell EU-bilaga i primärrätt",
+        "pröva importtillstånd, certifikat, undantag och nationella regler var för sig",
+        "visa artikel-/bilagestöd och källans versionsdatum"
+      ],
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "id": "CBAM-01",
+      "domain": "cbam",
+      "case": "Företag importerar en metallprodukt men uppger varken KN-kod, tullförfarande eller importvolym.",
+      "expect": [
+        "ingen bestämd CBAM-omfattning utan klassificering",
+        "be om KN-kod, tidsperiod, tullförfarande och volym",
+        "ingen gissad volymtröskel, auktorisationsplikt eller certifikatplikt"
+      ],
+      "verdict": "PARTIAL"
+    },
+    {
+      "id": "CBAM-02",
+      "domain": "cbam",
+      "case": "Importör av vara i potentiellt CBAM-omfattad kategori under 2026. Fråga om auktorisation, volymtröskel och skyldigheter.",
+      "expect": [
+        "verifiera rätt version av förordning och genomförandeakter",
+        "kontrollera KN/bilaga, år, volym, aktör och undantag",
+        "skilj auktorisation, utsläppsrapportering, deklaration och certifikatdatum"
+      ],
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "id": "SANCTIONS-01",
+      "domain": "sanktioner",
+      "case": "Export av teknisk utrustning till okänd slutmottagare via transitland; destination och slutanvändning är oklara.",
+      "expect": [
+        "ingen kategorisk slutsats om sanktionsefterlevnad",
+        "kontrollera relevant program, varuregler och tjänster",
+        "begär identifiering av motpart, destination och slutanvändning"
+      ],
+      "verdict": "PARTIAL"
+    },
+    {
+      "id": "SANCTIONS-02",
+      "domain": "sanktioner",
+      "case": "Företag frågar om avtal med utländsk motpart som påstås stå utanför EU:s sanktionslistor.",
+      "expect": [
+        "kontrollera uppdaterade listor och identitetsmatchning vid datumet",
+        "pröva ägande och kontroll samt land-, vara- och slutanvändningsrestriktioner",
+        "förklara att ej listad motpart inte ensamt innebär tillåten transaktion"
+      ],
+      "verdict": "CONDITIONAL"
+    }
+  ]
+}
