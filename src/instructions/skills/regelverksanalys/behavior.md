@@ -29,3 +29,7 @@ Testa primär importör, nedströmsaktör och otillräcklig KN/TARIC-kod enligt 
 ### Kvalitetssäkring för EUDR
 
 Pröva artikel 2, 3, 4, 4a, 5, 8–11 och 38 och bilaga I mot tillämplig lydelse. Gör en separat verifiering av svensk kompletterande rätt. Använd en daterad söklogg och redovisa ej verifierade uppgifter öppet. Ge inte PASS när avgörande källor eller rekvisit saknas.
+
+### Generell LEG-001-kontroll
+
+Tillämpa alltid LEG-001 i kärninstruktionen, även för CITES, CBAM, sanktioner, kemikalier och produktsäkerhet. Identifiera villkor som är specifika för rättsområdet och möjliga parallella regelverk innan kategorisk slutsats. Pröva art och bilaga för CITES, varukod och aktörströskel för CBAM, motpart och slutanvändning för sanktioner, ämnesidentitet och halt för REACH/CLP, samt produktkategori och tillämplig harmonisering för produktsäkerhet. Saknade avgörande data ska ge PARTIAL och villkorad slutsats, inte gissade identiteter.

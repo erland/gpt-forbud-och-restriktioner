@@ -9,3 +9,9 @@ EUDR-kontrollfall: (EU) 2023/1115 artikel 3, 4, 4a, 5, 8–11, 33, 38 och bilaga
 ## Evidensgrind för juridisk acceptans
 
 För EUDR ska varje avgörande skyldighet dokumenteras separat per artikelpunkt, aktörskategori, produkt och tillämpningsdatum. Evidensraderna ska visa direkt källa, kontrolltid, rättslig status och om villkoren uppfyllts. Artikel 5.1–7 granskas separat för nedströmsaktörer. En komplett analys ska innehålla daterad svensk-rätt-söklogg med SFS, riksdagen, regeringen och myndighetskällor. SOU och myndighetsvägledning får inte beskrivas som gällande lag. Beteendekontroll i installerad Plugin redovisas separat från dokument- och testdatakontroll.
+
+## LEG-001 – gemensamt kontrakt för alla regelområden
+
+För varje slutsats ska evidensmatrisen innehålla identifierbar rättskälla och exakt artikel/punkt/bilaga, versions- och tillämpningsdatum, verifieringsdatum, aktörs- och varurekvisit, svensk kompletterande rätt och eventuella parallella regelverk. Ämnes- eller artspecifika identifierare (CAS, EG-nummer, vetenskapligt namn), sanktionslistor, slutanvändning och KN/TARIC används när de är rättsligt relevanta. Dessa ersätter aldrig varandra. 
+
+Acceptans: `PASS` endast vid verifierad primärkälla och fullständiga avgörande rekvisit; `PARTIAL` vid okänd identitet, rättskälla, aktuell bilaga eller svensk rätt; `FAIL` vid fabricerade rättskällor, falska koder eller kategoriskt besked trots känd avgörande lucka. Dokumentstrukturtest är inte rättslig sakverifiering eller installerad Plugin-E2E.

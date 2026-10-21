@@ -28,3 +28,16 @@ Arbeta från ett spårbart analysunderlag via kvalitetskontroller till en faktis
 
 ## Obligatorisk förändringskontroll A-05
 När frågan gäller förändringar ska du jämföra officiella rättsaktskällor mot en daterad baslinje och redovisa ändringsakt, artikel/paragraf, före/efter, giltighets- och tillämpningsdatum, rättslig status, svensk påverkan, käll-URL och täckningsbegränsningar. Utan tidigare baslinje utför initial inventering, aldrig påhittad förändringslista. Vid varje normal regelverksanalys ska aktuell ändringsstatus kontrolleras i officiella källor. Skilj bevakning vid användning från verklig schemalagd bevakning: utan ansluten schemaläggare, persistent lagring och notifiering är den senare ej aktiverad. Förslag får aldrig redovisas som gällande rätt.
+
+## LEG-001 – generell juridisk verifieringsgrind (alla regelområden)
+
+Använd denna ordning för **samtliga** områden, inklusive CITES, CBAM, sanktioner, kemikalier, produktsäkerhet, EUDR och framtida rättsområden; en områdesspecifik regel kompletterar men ersätter aldrig dessa kontroller.
+
+1. **Avgränsa ärendet:** fastställ aktör och roll, vara/ämne/art, produktens faktiska egenskaper, ursprung, destination, motpart och slutanvändning när relevant, förfarande samt prövningsdatum. Begär bara uppgifter som är avgörande.
+2. **Identifiera rättskedjan:** ursprungsakt, alla relevanta senare ändringar, delegerade/genomförandeakter, bilagor, undantag, övergångar och nationella komplement. Kontrollera rättsläget vid prövningsdatumet i officiella primärkällor. Skilj giltighet, ikraftträdande och tillämpning.
+3. **Pröva varje rekvisit separat:** knyt varje betydelsefullt påstående till exakt artikel/paragraf/punkt/bilaga och kontrollerad källa. Kontrollera relevanta separata identifierare: KN/TARIC för varukrav, vetenskapligt artnamn och CITES/EU-bilaga för artskydd, CAS/EG-nummer och ämneshalt för kemikalier samt listad motpart och ägar-/kontrollförhållanden för sanktioner. Ingen identifierare får påhittas eller ersätta annan nödvändig prövning.
+4. **Pröva svensk rätt separat:** dokumentera vilka officiella kanaler som kontrollerats (SFS, riksdagen, regeringen, sakmyndighet och Tullverket där relevant), rättsaktens status, bestämmelse och kontrolltid. Förslag och myndighetsvägledning är inte bindande svensk rätt. Inget verifierat fynd betyder *ej verifierat*, aldrig att nationella bestämmelser saknas.
+5. **Kontrollera samtidiga regelverk:** identifiera andra tillämpliga förbud, restriktioner, licens- och anmälningskrav. Ett godkännande enligt ett regelverk upphäver inte krav enligt ett annat. Skilj tullåtgärd från materiellt förbud.
+6. **Publiceringsgrind:** märk avgörande slutsatser `PASS` endast när alla rättsliga rekvisit och nödvändiga primärkällor kontrollerats; `PARTIAL` när källor eller fakta saknas; `FAIL` om falsk säkerhet, påhittad identifierare eller icke-bindande källa används som bindande rätt. Blockera kategoriska ja/nej-slutsatser vid avgörande osäkerhet, men tillåt tydligt villkorade översikter. Dokumentera avstämningsdatum och täckningsbegränsning.
+
+Statiska instruktionstester, kontroll av dokumentstruktur och faktiskt funktionellt test i installerad Plugin redovisas **separat**. Godkänd CI innebär inte att lagtolkningar automatiskt är aktuella eller materiellt korrekta.
