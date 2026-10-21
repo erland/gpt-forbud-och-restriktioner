@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "runner": "unittest",
+  "command": "python -B -m unittest discover -s tests -p test_*.py -v",
+  "test_modules": [
+    "test_acceptance_contract.py",
+    "test_eudr_regression.py",
+    "test_change_monitoring.py",
+    "test_change_history_eudr.py"
+  ],
+  "coverage_kind": "static_contract_and_fixture_regression",
+  "excluded": [
+    "installed_plugin_execution",
+    "live_EUR-Lex_verification",
+    "legal_expert_review",
+    "pdf_rendering_in_installed_host"
+  ],
+  "acceptance_scenarios": [
+    {
+      "id": "PLUGIN-01",
+      "prompt": "Undersök EUDR för en primär importör av kaffe till Sverige. Ange rättsakter, artiklar, svensk kompletterande rätt, DDS och AI-märkt PDF."
+    },
+    {
+      "id": "PLUGIN-02",
+      "prompt": "Undersök EUDR för en nedströms handlare. Skilj rollens skyldigheter från primär importör och ange artikelstöd."
+    },
+    {
+      "id": "PLUGIN-03",
+      "prompt": "Är min vara EUDR-omfattad? Jag vet inte varukoden. Redovisa osäkerheter och ställ relevant följdfråga."
+    },
+    {
+      "id": "PLUGIN-04",
+      "prompt": "Jämför EUDR 2025-01-01 och 2026-10-21; ange ändringsakter och före/efter med källor och AI-märkt PDF."
+    }
+  ]
+}

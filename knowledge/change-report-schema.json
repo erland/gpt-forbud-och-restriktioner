@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Förändringsrapport",
+  "type": "object",
+  "required": [
+    "subject",
+    "checked_at",
+    "mode",
+    "coverage",
+    "changes"
+  ],
+  "properties": {
+    "subject": {
+      "type": "string"
+    },
+    "checked_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "baseline_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "mode": {
+      "enum": [
+        "initial_inventory",
+        "on_demand_comparison",
+        "scheduled_run"
+      ]
+    },
+    "scheduler_active": {
+      "type": "boolean"
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source",
+          "status"
+        ],
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "checked",
+              "not_checked",
+              "unavailable"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "act_id",
+          "status",
+          "before",
+          "after",
+          "sources",
+          "verification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "act_id": {
+            "type": "string"
+          },
+          "provision": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "proposal",
+              "adopted_not_applicable",
+              "in_force",
+              "repealed"
+            ]
+          },
+          "before": {
+            "type": "string"
+          },
+          "after": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "verification": {
+            "enum": [
+              "verified",
+              "partly_verified",
+              "unverified"
+            ]
+          },
+          "application_date": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "swedish_impact": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

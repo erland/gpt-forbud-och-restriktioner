@@ -1,0 +1,9 @@
+{
+ "topic":"EUDR 2023/1115", "baseline_date":"2025-01-01", "comparison_date":"2026-10-21",
+ "sources_scope":"selected official EU acts; not exhaustive", "changes":[
+  {"id":"EUDR-01","act":"2025/2650","article":"article 1(25), EUDR 38","official_url":"https://eur-lex.europa.eu/legal-content/SV/ALL/?uri=CELEX:32025R2650","effect":"application date postponed"},
+  {"id":"EUDR-02","act":"2025/2650","article":"article 1(6), EUDR 5-6","official_url":"https://eur-lex.europa.eu/legal-content/SV/ALL/?uri=CELEX:32025R2650","effect":"downstream obligations revised"},
+  {"id":"EUDR-03","act":"2025/2650","article":"article 1(24), EUDR 37","official_url":"https://eur-lex.europa.eu/legal-content/SV/ALL/?uri=CELEX:32025R2650","effect":"timber regulation repeal and transition"},
+  {"id":"EUDR-04","act":"2026/2102","article":"articles 1-2 and annex I","official_url":"https://eur-lex.europa.eu/legal-content/SV/TXT/?uri=CELEX:32026R2102","effect":"product coverage amended"}
+ ]
+}

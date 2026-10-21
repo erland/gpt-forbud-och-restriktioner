@@ -1,0 +1,14 @@
+progress:
+  current_step: 7
+  last_completed_step: 6
+  completed_steps: [1, 2, 3, 4, 5, 6]
+  skipped_steps: []
+  inserted_steps: []
+validation:
+  last_result: pending_ci_validation
+project_hygiene:
+  last_result: pending_ci_validation
+next_step:
+  recommended: 7
+  title: Installerat end-to-end-test och optional schemaläggning
+  reason: Historisk bevakning testad, separat värdmodell och aktiv scheduler återstår.
